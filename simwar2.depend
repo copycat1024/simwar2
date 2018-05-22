@@ -1,0 +1,83 @@
+# depslib dependency file v1.0
+1525587680 source:/home/iola/Documents/Code/mingw/simwar2/battle.cpp
+	"battle.h"
+	<iostream>
+	<string>
+
+1525587685 /home/iola/Documents/Code/mingw/simwar2/battle.h
+	<string>
+	<vector>
+	<array>
+	"hero.h"
+
+1524408638 /home/iola/Documents/Code/mingw/simwar2/hero.h
+	<string>
+	"sol.hpp"
+
+1524154860 /home/iola/Documents/Code/mingw/simwar2/sol.hpp
+	<stdexcept>
+	<string>
+	<tuple>
+	<cstddef>
+	<string_view>
+	<functional>
+	<boost/functional/hash.hpp>
+	<type_traits>
+	<cstdint>
+	<memory>
+	<iterator>
+	<iosfwd>
+	<lua.h>
+	<lualib.h>
+	<lauxlib.h>
+	<luajit.h>
+	<lua.hpp>
+	<stddef.h>
+	<limits.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<errno.h>
+	<stdio.h>
+	<share.h>
+	<unistd.h>
+	<sys/wait.h>
+	<utility>
+	<boost/optional.hpp>
+	<initializer_list>
+	<cassert>
+	<cstdlib>
+	<array>
+	<variant>
+	<cctype>
+	<locale>
+	<vector>
+	<forward_list>
+	<algorithm>
+	<cmath>
+	<cstring>
+	<limits>
+	<unordered_map>
+	<sstream>
+	<cstdio>
+	<bitset>
+	<boost/unordered_map.hpp>
+
+1527005190 source:/home/iola/Documents/Code/mingw/simwar2/client.cpp
+	<cstdlib>
+	"client.h"
+	"sol.hpp"
+	<ncurses.h>
+
+1524517170 /home/iola/Documents/Code/mingw/simwar2/client.h
+	<stack>
+	<string>
+
+1525587698 source:/home/iola/Documents/Code/mingw/simwar2/hero.cpp
+	"hero.h"
+	"battle.h"
+
+1527005311 source:/home/iola/Documents/Code/mingw/simwar2/main.cpp
+	<fstream>
+	"battle.h"
+

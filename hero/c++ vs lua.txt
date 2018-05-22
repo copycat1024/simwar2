@@ -1,0 +1,9 @@
+C++
+---
+- Well defined interface
+- Faster
+- 
+======================================
+Lua
+---
+- Over the air update
