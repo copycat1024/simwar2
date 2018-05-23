@@ -77,7 +77,8 @@
 	"hero.h"
 	"battle.h"
 
-1527005311 source:/home/iola/Documents/Code/mingw/simwar2/main.cpp
+1527007400 source:/home/iola/Documents/Code/mingw/simwar2/main.cpp
 	<fstream>
 	"battle.h"
+	"client.h"
 
