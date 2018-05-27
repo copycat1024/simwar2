@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="lua5.2" />
@@ -26,6 +27,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,14 +38,18 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="battle.cpp" />
-		<Unit filename="battle.h" />
-		<Unit filename="client.cpp" />
-		<Unit filename="client.h" />
-		<Unit filename="hero.cpp" />
-		<Unit filename="hero.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="sol.hpp" />
+		<Unit filename="include/battle.h" />
+		<Unit filename="include/client.h" />
+		<Unit filename="include/entity.h" />
+		<Unit filename="include/hero.h" />
+		<Unit filename="include/sol.hpp" />
+		<Unit filename="include/test.h" />
+		<Unit filename="src/battle.cpp" />
+		<Unit filename="src/client.cpp" />
+		<Unit filename="src/entity.cpp" />
+		<Unit filename="src/hero.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/test.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

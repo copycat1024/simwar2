@@ -1,0 +1,34 @@
+#ifndef BATTLE_H
+#define BATTLE_H
+
+#include <string>
+#include <vector>
+#include <array>
+#include <ostream>
+#include "hero.h"
+
+typedef std::ostream SwLogStream;
+
+class SwBattle{
+public:
+
+	// Main interface
+	SwBattle(SwLogStream&);
+	void run();
+	bool over();
+
+	// Log interface
+	SwLogStream& log;
+
+private:
+
+	// Hero interface
+	friend SwBattleHero;
+	static const int _hero_num = 10;
+	std::array<std::string, _hero_num> _hero_name;
+	std::array<SwHero*, _hero_num> _heros;
+	std::array<int, _hero_num> _hero_pos;
+
+};
+
+#endif
