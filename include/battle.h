@@ -14,6 +14,7 @@ public:
 
 	// Main interface
 	SwBattle(SwLogStream&);
+	~SwBattle();
 	void run();
 	bool over();
 
@@ -22,13 +23,12 @@ public:
 
 private:
 
-	// Hero interface
+	// Hero manager
 	friend SwBattleHero;
 	static const int _hero_num = 10;
 	std::array<std::string, _hero_num> _hero_name;
-	std::array<SwHero*, _hero_num> _heros;
+	std::array<SwBattleHero*, _hero_num> _heros;
 	std::array<int, _hero_num> _hero_pos;
-
 };
 
 #endif

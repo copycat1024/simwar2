@@ -20,7 +20,7 @@ void real_main(void){
 	ofstream file;
 	file.open("battle_log.lua");
 	SwBattle b(file);
-//	b.run();
+	b.run();
 
 	SwClient c("battle_log.lua");
 	c.show();

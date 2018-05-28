@@ -3,49 +3,100 @@
 #include "battle.h"
 
 using std::endl;
+using std::cout;
+
+// helper functions
+int order(int my_pos, int enemy_pos){
+    int h = enemy_pos%3;
+    int l = (enemy_pos-h)/3;
+    int m = my_pos%3;
+    if (m==2) h = 2-h;
+    if (m==1) h = (4-h)%3;
+    return l+h*3;
+}
 
 // class SwHero definition
 
-EntityValue& SwHero::operator[](SwHeroKey k){
+inline EntityValue& SwHero::operator[](SwHeroKey k){
 	return Entity::operator[]((EntityKey) k);
 }
 
-EntityValue SwHero::hp(){
-	return (*this)[SwHeroKey::HP];
+inline void SwHero::alter(SwHeroKey k, EntityValue v){
+	Entity::alter((EntityKey) k, v);
 }
 
 // class SwBattleHero definition
 
-
 // -private methods
-
-// --load data from lua
-void SwBattleHero::_load(SwHeroKey k, const char* varname){
-	LuaEntity::load((EntityKey)k, varname);
-}
 
 // --locate hero file, return filename and path
 inline const char* SwBattleHero::_locateHeroFile(SwBattle* bat, int id){
 	return ("hero/"+bat->_hero_name[id]+".lua").c_str();
 }
 
+// --log alter call
+inline void SwBattleHero::_logAlter(SwHeroKey k, EntityValue v){
+	_bat->log << "alter(";
+	_bat->log << (*this)[SwHeroKey::ID] << ","; // id
+	_bat->log << (EntityKey) k; // key
+	_bat->log << "," << v; // delta
+	_bat->log << ")" << endl;
+}
+
+// --load data from lua
+void SwBattleHero::_load(SwHeroKey k, const char* varname){
+	LuaEntity::load((EntityKey)k, varname);
+    _logAlter(k, (*this)[k]);
+}
+
+// --load data from lua
+void SwBattleHero::_alter(SwHeroKey k, EntityValue v){
+	SwHero::alter(k, v);
+    _logAlter(k, v);
+}
+
+int SwBattleHero::_targetSingle(){
+	int td = ((this->id()/5+1)%2)*5; // enemy team delta
+	int i;
+	int m = (*this)[SwHeroKey::PS]; // my position
+	int ei, et; // enemy position
+    int t = 0; // target
+	while (_bat->_heros[t+td]->isDead()){
+		t++;
+	}
+	for (i=t+1; i<5; i++){
+		ei = _bat->_hero_pos[i+td];
+		et = _bat->_hero_pos[t+td];
+		if (order(m,ei) < order(m,et) && !_bat->_heros[i+td]->isDead()){
+			t = i;
+		}
+	}
+	return t+td;
+}
+
 // -public methods
 
 // --constructor
 SwBattleHero::SwBattleHero(SwBattle* bat, int id) : LuaEntity(_locateHeroFile(bat, id)){
+	_bat = bat;
+
 	// load battle info from bat
 	(*this)[SwHeroKey::ID] = id;
-	(*this)[SwHeroKey::PS] = bat->_hero_pos[id];
-
-	// load config info from lua file
-	SwBattleHero::_load(SwHeroKey::HP, "hp");
-	SwBattleHero::_load(SwHeroKey::AD, "ad");
+	(*this)[SwHeroKey::PS] = _bat->_hero_pos[id];
 
     // log hero initial state
 	bat->log << "init_hero(";
 	bat->log << id << ","; // id
-	bat->log << "'" << bat->_hero_name[id] << "'"; // name
+	bat->log << "'" << _bat->_hero_name[id] << "'"; // name
 	bat->log << "," << (*this)[SwHeroKey::PS]; // postition
-	bat->log << "," << (*this)[SwHeroKey::HP]; // hit point
 	bat->log << ")" << endl;
+
+	// load config info from lua file
+	SwBattleHero::_load(SwHeroKey::HP, "hp");
+	SwBattleHero::_load(SwHeroKey::AD, "ad");
+}
+
+void SwBattleHero::turn(){
+	int target = _targetSingle();
+	_bat->_heros[target]->_alter(SwHeroKey::HP, -(*this)[SwHeroKey::AD]);
 }

@@ -82,22 +82,24 @@
 	"battle.h"
 	"client.h"
 
-1527426192 source:/home/iola/Documents/Code/mingw/simwar2/src/client.cpp
+1527491733 source:/home/iola/Documents/Code/mingw/simwar2/src/client.cpp
 	<cstdlib>
 	<iostream>
 	"client.h"
 	"sol.hpp"
 	<ncurses.h>
 
-1527426491 source:/home/iola/Documents/Code/mingw/simwar2/src/hero.cpp
+1527491262 source:/home/iola/Documents/Code/mingw/simwar2/src/hero.cpp
 	<iostream>
 	"hero.h"
 	"battle.h"
 
-1527426269 /home/iola/Documents/Code/mingw/simwar2/include/client.h
+1527491631 /home/iola/Documents/Code/mingw/simwar2/include/client.h
 	<string>
+	<array>
+	"hero.h"
 
-1524154860 /home/iola/Documents/Code/mingw/simwar2/include/sol.hpp
+1527429309 /home/iola/Documents/Code/mingw/simwar2/include/sol.hpp
 	<stdexcept>
 	<string>
 	<tuple>
@@ -146,42 +148,42 @@
 	<bitset>
 	<boost/unordered_map.hpp>
 
-1527392558 /home/iola/Documents/Code/mingw/simwar2/include/hero.h
+1527490288 /home/iola/Documents/Code/mingw/simwar2/include/hero.h
 	"sol.hpp"
 	"entity.h"
 
-1527397237 /home/iola/Documents/Code/mingw/simwar2/include/battle.h
+1527487118 /home/iola/Documents/Code/mingw/simwar2/include/battle.h
 	<string>
 	<vector>
 	<array>
 	<ostream>
 	"hero.h"
 
-1527424856 source:/home/iola/Documents/Code/mingw/simwar2/src/battle.cpp
+1527486596 source:/home/iola/Documents/Code/mingw/simwar2/src/battle.cpp
 	<iostream>
 	<string>
 	"battle.h"
 
-1527397353 source:/home/iola/Documents/Code/mingw/simwar2/src/entity.cpp
+1527429309 source:/home/iola/Documents/Code/mingw/simwar2/src/entity.cpp
 	"entity.h"
 	<iostream>
 	<cstring>
 
-1527426214 source:/home/iola/Documents/Code/mingw/simwar2/src/main.cpp
+1527482677 source:/home/iola/Documents/Code/mingw/simwar2/src/main.cpp
 	<fstream>
 	<iostream>
 	"client.h"
 	"test.h"
 	"battle.h"
 
-1527324760 /home/iola/Documents/Code/mingw/simwar2/include/entity.h
+1527429309 /home/iola/Documents/Code/mingw/simwar2/include/entity.h
 	<string>
 	<unordered_map>
 	"sol.hpp"
 
-1527391221 /home/iola/Documents/Code/mingw/simwar2/include/test.h
+1527429309 /home/iola/Documents/Code/mingw/simwar2/include/test.h
 
-1527424944 source:/home/iola/Documents/Code/mingw/simwar2/src/test.cpp
+1527429309 source:/home/iola/Documents/Code/mingw/simwar2/src/test.cpp
 	<iostream>
 	<fstream>
 	"entity.h"
