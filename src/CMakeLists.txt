@@ -1,0 +1,20 @@
+# Main source directory
+
+# Add config include
+include_directories("${PROJECT_BINARY_DIR}/config")
+
+# Add project include
+include_directories("${PROJECT_SOURCE_DIR}/include")
+
+set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lncurses")
+
+add_library(simwar-lib
+	battle.cpp
+	entity.cpp
+	client.cpp
+	hero.cpp
+	test.cpp
+)
+
+add_executable(simwar main.cpp)
+target_link_libraries(simwar simwar-lib lua5.3-lib)

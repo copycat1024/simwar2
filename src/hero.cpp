@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
 #include "hero.h"
 #include "battle.h"
 
 using std::endl;
 using std::cout;
+using std::string;
 
 // helper functions
 int order(int my_pos, int enemy_pos){
@@ -30,8 +32,9 @@ inline void SwHero::alter(SwHeroKey k, EntityValue v){
 // -private methods
 
 // --locate hero file, return filename and path
-inline const char* SwBattleHero::_locateHeroFile(SwBattle* bat, int id){
-	return ("hero/"+bat->_hero_name[id]+".lua").c_str();
+inline const string SwBattleHero::_locateHeroFile(SwBattle* bat, int id){
+	std::string path = bat->_hero_path+bat->_hero_name[id]+".lua";
+	return path;
 }
 
 // --log alter call
@@ -94,6 +97,7 @@ SwBattleHero::SwBattleHero(SwBattle* bat, int id) : LuaEntity(_locateHeroFile(ba
 	// load config info from lua file
 	SwBattleHero::_load(SwHeroKey::HP, "hp");
 	SwBattleHero::_load(SwHeroKey::AD, "ad");
+
 }
 
 void SwBattleHero::turn(){

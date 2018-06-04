@@ -1,8 +1,8 @@
 #include "entity.h"
 #include <iostream>
-#include <cstring>
+#include <string>
 
-using std::strtok;
+using std::string;
 using std::cout;
 using std::endl;
 
@@ -10,11 +10,8 @@ void Entity::alter(EntityKey k, EntityValue v){
 	(*this)[k] += v;
 }
 
-LuaEntity::LuaEntity(const char* filename){
-    char* buf = new char[strlen(filename)];
-    strcpy(buf, filename);
-	_lua.script_file(buf);
-	delete [] buf;
+LuaEntity::LuaEntity(const string filename){
+	_lua.script_file(filename.c_str());
 }
 
 void LuaEntity::load(EntityKey k, const char* varname){

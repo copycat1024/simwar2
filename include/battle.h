@@ -13,7 +13,7 @@ class SwBattle{
 public:
 
 	// Main interface
-	SwBattle(SwLogStream&);
+	SwBattle(SwLogStream&, const char*);
 	~SwBattle();
 	void run();
 	bool over();
@@ -26,6 +26,7 @@ private:
 	// Hero manager
 	friend SwBattleHero;
 	static const int _hero_num = 10;
+	const char* _hero_path;
 	std::array<std::string, _hero_num> _hero_name;
 	std::array<SwBattleHero*, _hero_num> _heros;
 	std::array<int, _hero_num> _hero_pos;

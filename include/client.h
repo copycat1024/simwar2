@@ -36,7 +36,7 @@ class SwClientHero:public SwHero{
 
 class SwClient:ClientWrap{
 public:
-	SwClient(const char* filename);
+	SwClient(const char* filename, const char* luapath);
 	~SwClient();
     void show();
 private:
@@ -54,6 +54,8 @@ private:
     int _team, _pos;
     int _turn;
 	std::string _file;
+
+	const char* _lua_path;
 };
 
 #endif

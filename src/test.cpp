@@ -3,6 +3,7 @@
 #include "entity.h"
 #include "hero.h"
 #include "battle.h"
+#include "config.h"
 
 using std::cout;
 using std::endl;
@@ -28,5 +29,5 @@ void test_battle_hero(){
 	ofstream file;
 	file.open("battle_log.lua");
 
-	SwBattle b(file);
+	SwBattle b(file, SIMWAR_EXECUTABLE_PATH);
 }

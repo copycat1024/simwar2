@@ -98,7 +98,7 @@ void SwClientHero::show(SwClient& c){
 //	c._line(this->id(), SwClientLine::Debug, (*this)[SwHeroKey::DB]);
 }
 
-SwClient::SwClient(const char* filename): _file(filename){
+SwClient::SwClient(const char* filename, const char* luapath): _file(filename), _lua_path(luapath){
 }
 
 SwClient::~SwClient(){
@@ -133,7 +133,7 @@ void SwClient::_run_log(){
 	lua["echo"] = [](string txt){
 //		cout << txt << endl;
 	};
-	lua.script_file("client.lua");
+	lua.script_file(_lua_path);
 	lua["turn_start"] = [this](int id){
 		this->_turn = id;
 		this->_refresh();
@@ -160,7 +160,6 @@ void SwClient::_run_log(){
 }
 
 void SwClient::show(){
-	cout << "show" << endl;
 	initscr();
 	_frame();
 	_run_log();

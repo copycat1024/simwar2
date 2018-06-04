@@ -35,7 +35,7 @@ public:
 class SwBattle;
 class SwBattleHero:virtual public SwHero, virtual LuaEntity{
 private:
-	const char* _locateHeroFile(SwBattle* bat, int id);
+	const std::string _locateHeroFile(SwBattle* bat, int id);
 	void _logAlter(SwHeroKey, EntityValue);
 	void _load(SwHeroKey, const char*);
 	void _alter(SwHeroKey, EntityValue);

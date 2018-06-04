@@ -7,7 +7,7 @@ using std::endl;
 using std::string;
 using std::to_string;
 
-SwBattle::SwBattle(SwLogStream& l):log(l){
+SwBattle::SwBattle(SwLogStream& l, const char* hero_path):log(l), _hero_path(hero_path){
 	// default init
 	int i;
 	_hero_pos = {1,3,4,5,7,0,1,2,4,7};
@@ -18,8 +18,8 @@ SwBattle::SwBattle(SwLogStream& l):log(l){
 		_hero_name[i] = "sora";
 	}
 
-	log << "init_start()" << endl;
 	// load heroes
+	log << "init_start()" << endl;
 	for (i=0; i<_hero_num; i++){
 		_heros[i] = new SwBattleHero(this, i);
 	}
