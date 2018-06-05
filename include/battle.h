@@ -13,7 +13,7 @@ class SwBattle{
 public:
 
 	// Main interface
-	SwBattle(SwLogStream&, const char*);
+	SwBattle(SwLogStream&, const char*, const char*, const char*);
 	~SwBattle();
 	void run();
 	bool over();
@@ -21,6 +21,8 @@ public:
 	// Log interface
 	SwLogStream& log;
 
+	// Result
+	int winner = -1;
 private:
 
 	// Hero manager
