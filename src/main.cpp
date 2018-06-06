@@ -10,6 +10,7 @@ using std::cout;
 using std::endl;
 
 void run_battle(const char*, const char*, const char*);
+void run_battle_nl(const char* team_a, const char* team_b);
 void run_client(const char*);
 void print_help(const char*);
 
@@ -38,6 +39,8 @@ int main(int argc, char** argv){
 		} else {
 			print_help(argv[0]);
 		}
+	} else if (strcmp(argv[1], "battle-nl") == 0){
+		run_battle_nl(argv[2], argv[3]);
 	} else {
 		print_help(argv[0]);
 	}
@@ -47,6 +50,12 @@ void run_battle(const char* log_file, const char* team_a, const char* team_b){
 	ofstream file;
 	file.open(log_file);
 	SwBattle b(file, DEFAULT_HERO_PATH, team_a, team_b);
+	b.run();
+	cout << b.winner << endl;
+}
+
+void run_battle_nl(const char* team_a, const char* team_b){
+	SwBattle b(DEFAULT_HERO_PATH, team_a, team_b);
 	b.run();
 	cout << b.winner << endl;
 }

@@ -14,6 +14,7 @@ public:
 
 	// Main interface
 	SwBattle(SwLogStream&, const char*, const char*, const char*);
+	SwBattle(const char*, const char*, const char*);
 	~SwBattle();
 	void run();
 	bool over();
@@ -23,7 +24,12 @@ public:
 
 	// Result
 	int winner = -1;
+
+	// Write log
+	bool write_log = true;
 private:
+
+	void _run_hero(int);
 
 	// Hero manager
 	friend SwBattleHero;

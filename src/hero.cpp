@@ -49,13 +49,13 @@ inline void SwBattleHero::_logAlter(SwHeroKey k, EntityValue v){
 // --load data from lua
 void SwBattleHero::_load(SwHeroKey k, const char* varname){
 	LuaEntity::load((EntityKey)k, varname);
-    _logAlter(k, (*this)[k]);
+    if (_bat->write_log) _logAlter(k, (*this)[k]);
 }
 
 // --load data from lua
 void SwBattleHero::_alter(SwHeroKey k, EntityValue v){
 	SwHero::alter(k, v);
-    _logAlter(k, v);
+	if (_bat->write_log) _logAlter(k, v);
 }
 
 int SwBattleHero::_targetSingle(){
@@ -88,11 +88,13 @@ SwBattleHero::SwBattleHero(SwBattle* bat, int id) : LuaEntity(_locateHeroFile(ba
 	(*this)[SwHeroKey::PS] = _bat->_hero_pos[id];
 
     // log hero initial state
-	bat->log << "init_hero(";
-	bat->log << id << ","; // id
-	bat->log << "'" << _bat->_hero_name[id] << "'"; // name
-	bat->log << "," << (*this)[SwHeroKey::PS]; // postition
-	bat->log << ")" << endl;
+	if (bat->write_log){
+		bat->log << "init_hero(";
+		bat->log << id << ","; // id
+		bat->log << "'" << _bat->_hero_name[id] << "'"; // name
+		bat->log << "," << (*this)[SwHeroKey::PS]; // postition
+		bat->log << ")" << endl;
+	}
 
 	// load config info from lua file
 	SwBattleHero::_load(SwHeroKey::HP, "hp");
