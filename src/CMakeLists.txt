@@ -6,8 +6,6 @@ include_directories("${PROJECT_BINARY_DIR}/config")
 # Add project include
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
-set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lncurses")
-
 add_library(simwar-lib
 	battle.cpp
 	entity.cpp

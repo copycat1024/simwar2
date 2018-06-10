@@ -1,16 +1,27 @@
-#include <cstdlib>
-#include <iostream>
+#include "rlutil.h"
 #include "client.h"
 #include "sol.hpp"
-
-extern "C" {
-#include <ncurses.h>
-}
 
 using std::string;
 using std::to_string;
 using std::cout;
 using std::endl;
+using rlutil::setChar;
+using rlutil::anykey;
+using rlutil::cls;
+
+void mvaddch(int y, int x, char s){
+	gotoxy(x+1, y+1);
+	setChar(s);
+}
+
+void initscr(){
+	cls();
+}
+
+void endwin(){
+	cls();
+}
 
 void blit(int x, int y, const char* s, int l){
     int i=0;
@@ -22,7 +33,6 @@ void blit(int x, int y, const char* s, int l){
 		mvaddch(y, x+i, ' ');
         i++;
 	}
-	move(0, 0);
 }
 
 ClientWrap::ClientWrap(){
@@ -30,6 +40,7 @@ ClientWrap::ClientWrap(){
     _len = 10;
 }
 
+// Draw the frame
 void ClientWrap::_frame(){
 	int i,j;
 	for (i=0; i<(_hei+1)*4; i+=_hei+1){
@@ -70,8 +81,7 @@ inline void ClientWrap::_line(int team, int pos, int line, int data){
 }
 
 void ClientWrap::_pause(){
-	refresh();
-	getch();
+	anykey();
 }
 
 void SwClientHero::alter(SwHeroKey k, EntityValue v){
