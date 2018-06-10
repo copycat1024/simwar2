@@ -102,7 +102,14 @@ SwBattleHero::SwBattleHero(SwBattle* bat, int id) : LuaEntity(_locateHeroFile(ba
 
 }
 
-void SwBattleHero::turn(){
+void SwBattleHero::_simpleAttack(){
 	int target = _targetSingle();
 	_bat->_heros[target]->_alter(SwHeroKey::HP, -(*this)[SwHeroKey::AD]);
+}
+
+void SwBattleHero::turn(){
+	_lua["simpleAttack"] = [this](){
+		this->_simpleAttack();
+	};
+	_lua["turn"]();
 }

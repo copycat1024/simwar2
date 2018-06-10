@@ -34,13 +34,20 @@ public:
 
 class SwBattle;
 class SwBattleHero:virtual public SwHero, virtual LuaEntity{
+
 private:
+	SwBattle* _bat;
+
+	// Private helper
 	const std::string _locateHeroFile(SwBattle* bat, int id);
 	void _logAlter(SwHeroKey, EntityValue);
 	void _load(SwHeroKey, const char*);
 	void _alter(SwHeroKey, EntityValue);
 	int _targetSingle();
-	SwBattle* _bat;
+
+	// Hero actions
+	void _simpleAttack();
+
 protected:
 	friend SwBattle;
 	SwBattleHero(SwBattle* bat, int id);

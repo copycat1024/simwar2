@@ -18,3 +18,6 @@ add_library(simwar-lib
 
 add_executable(simwar main.cpp)
 target_link_libraries(simwar simwar-lib lua5.3-lib)
+
+add_executable(devtest test.cpp)
+target_link_libraries(devtest simwar-lib lua5.3-lib)

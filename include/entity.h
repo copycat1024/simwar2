@@ -18,7 +18,7 @@ class LuaEntity:virtual public Entity{
 public:
     LuaEntity(std::string);
     void load(EntityKey, const char*);
-private:
+protected:
 	sol::state _lua;
 };
 
