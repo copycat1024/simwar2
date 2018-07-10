@@ -1,25 +1,23 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef SW_ENTITY_H
+#define SW_ENTITY_H
 
-#include <string>
 #include <unordered_map>
-#include "sol.hpp"
 
-typedef unsigned int EntityKey;
-typedef int EntityValue;
-typedef std::unordered_map<EntityKey, EntityValue> EntityBase;
+namespace simwar{
 
-class Entity:public EntityBase{
-public:
-    void alter(EntityKey, EntityValue);
-};
+	typedef unsigned int HeroKey;
+	typedef int HeroValue;
+	typedef std::unordered_map<HeroKey, HeroValue> Hero;
 
-class LuaEntity:virtual public Entity{
-public:
-    LuaEntity(std::string);
-    void load(EntityKey, const char*);
-protected:
-	sol::state _lua;
-};
+	namespace Key{
+		const HeroKey ID   = 0;
+		const HeroKey HID  = 1; // hero ID
+		const HeroKey Pos  = 2;
+
+		const HeroKey HP   = 8;
+		const HeroKey AD   = 9;
+	}
+
+}
 
 #endif

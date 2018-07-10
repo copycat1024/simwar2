@@ -1,43 +1,20 @@
-#ifndef BATTLE_H
-#define BATTLE_H
+#ifndef SW_BATTLE_H
+#define SW_BATTLE_H
 
 #include <string>
-#include <vector>
 #include <array>
-#include <ostream>
-#include "hero.h"
+#include "team.h"
 
-typedef std::ostream SwLogStream;
+namespace simwar{
 
-class SwBattle{
-public:
+	struct BattleModel{
+		void init(const std::string&, const std::string&);
 
-	// Main interface
-	SwBattle(SwLogStream&, const char*, const char*, const char*);
-	SwBattle(const char*, const char*, const char*);
-	~SwBattle();
-	void run();
-	bool over();
+		std::array<Team, 2> team;
+		int active_team;
+		int rotation;
+	};
 
-	// Log interface
-	SwLogStream& log;
-
-	// Result
-	int winner = -1;
-
-	// Write log
-	bool write_log = true;
-private:
-
-	void _run_hero(int);
-
-	// Hero manager
-	friend SwBattleHero;
-	static const int _hero_num = 10;
-	const char* _hero_path;
-	std::array<std::string, _hero_num> _hero_name;
-	std::array<SwBattleHero*, _hero_num> _heros;
-	std::array<int, _hero_num> _hero_pos;
-};
+}
 
 #endif
