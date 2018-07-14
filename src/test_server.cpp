@@ -1,9 +1,13 @@
 #include <iostream>
 #include <string>
 #include <exception>
+
 #include "program.h"
-#include "director.h"
-#include "team.h"
+#include "server.h"
+
+#include "server/director.h"
+#include "server/team.h"
+#include "server/proxy.h"
 
 using std::cin;
 using std::cout;
@@ -60,7 +64,7 @@ void testTeam(){
 
 	cout << "Team class unit test:" << endl;
 
-	TeamModel t;
+	Team t;
 	string stamp("ABababa"); 
 	cout << "Stamp: " << stamp << endl;
 	t.init(stamp);
@@ -72,6 +76,40 @@ void testTeam(){
 	cout << "Heroes:    ";
 	for (int n: s.heroes) cout << n << ' ';
 	cout << endl;
+}
+
+void testProxy(){
+
+	Program p;
+	string hero_path = p.folder() + "lua/default/hero/";
+
+	Director d;
+	d.init(hero_path);
+
+	cout << "Proxy class unit test:" << endl;
+
+	Proxy proxy(d);
+	LuaLogger log(cout, d);
+	proxy.log = &log;
+	proxy.run_battle("ABababa", "ABababa");
+}
+
+void testServer(){
+
+	int res;
+	Program p;
+	string hero_path = p.folder() + "lua/default/hero/";
+
+	cout << "Proxy class unit test:" << endl;
+
+	Server ser;
+	ser.init(hero_path);
+	res = ser.run_battle("ABababa", "ABababa");
+	cout << res << endl;
+	res = ser.run_battle_nl("ABababa", "ABababa");
+	cout << res << endl;
+	res = ser.run_battle("ABababa", "ABababa", "log.lua");
+	cout << res << endl;
 }
 
 int main(){
@@ -93,6 +131,10 @@ int main(){
 				testRole();
 			} else if (cmd == "team"){
 				testTeam();
+			} else if (cmd == "proxy"){
+				testProxy();
+			} else if (cmd == "server"){
+				testServer();
 			} else if (cmd != "exit"){
 				cout << "Accepted command:" << endl;
 				cout << "exit" << endl;

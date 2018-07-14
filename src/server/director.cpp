@@ -40,6 +40,7 @@ namespace simwar {
 			_hero_roles[i].init(_hero_files[i]);
 		}
 
+		_load_info();
 		_init = true;
 	}
 
@@ -51,6 +52,17 @@ namespace simwar {
 	const vector<Role>& Director::hero_roles() const{
 		if (!_init) throw NotInitializeError();
 		return _hero_roles;
+	}
+
+	void Director::_load_info(){
+		key_info[Key::HP] = string("hp");
+		key_info[Key::AD] = string("ad");
+		key_info[Key::HID] = string("hid");
+		key_info[Key::ID] = string("id");
+		key_info[Key::Pos] = string("pos");
+		for (int i=0; i<_hero_roles.size(); i++){
+			val_info[Key::HID][i] = _hero_roles[i].name();
+		}
 	}
 
 }

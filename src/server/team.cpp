@@ -69,7 +69,8 @@ simwar::TeamSetup stampToSetup(string stamp){
 
 namespace simwar{
 
-	void TeamModel::init(const string& stamp){
+	void Team::init(const string& stamp){
+
 		// get team setup from stamp + check
 		setup = stampToSetup(stamp);
 
@@ -80,28 +81,27 @@ namespace simwar{
 			heroes[i][Key::Pos] = setup.formation[i];
 		}
 
-		firstHero();
 	}
 
-	bool TeamModel::isDead(int i){
-		return heroes[i][Key::HP] > 0;
+	bool Team::isDead(int i) const{
+		if (i>4 || i<0) return true;
+		return heroes[i].at(Key::HP) <= 0;
 	}
 
-	void TeamModel::nextHero(){
-		if (pass){
-			pass = false;
-		} else {
-			do {
-				active_hero++;
-			} while (active_hero<5 || isDead(active_hero));
+	bool Team::lost() const{
+		for (int i=0; i<5; i++){
+			if (!isDead(i)) return false;
 		}
+		return true;
 	}
 
-	void TeamModel::firstHero(){
-		active_hero = 0;
+	void Team::nextHero(){
 		do {
 			active_hero++;
-		} while (active_hero<5 || isDead(active_hero));
-		pass = true;
+		} while (active_hero<5 && isDead(active_hero));
+	}
+
+	void Team::firstHero(){
+		active_hero = -1;
 	}
 }

@@ -34,15 +34,7 @@ namespace simwar {
 
 		_init = true;
 	}
-/*
-	void Program::run_battle(const char* log_file, const char* team_a, const char* team_b){
-		ofstream file;
-		file.open(log_file);
-		SwBattle b(file, DEFAULT_HERO_PATH, team_a, team_b);
-		b.run();
-		std::cout << b.winner << std::endl;
-	}
-*/
+
 	const string& Program::path(){
 		if (!_init) init();
 		return _path;

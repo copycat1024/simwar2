@@ -12,16 +12,16 @@ namespace simwar{
 		std::array<int, 5> heroes;		
 	};
 
-	struct TeamModel{
+	struct Team{
 		void init(const std::string&);
-		bool isDead(int);
+		bool isDead(int) const;
+		bool lost() const;
 		void firstHero();
 		void nextHero();
 
 		TeamSetup setup;
 		std::array<Hero, 5> heroes;
 		int active_hero;
-		bool pass;
 	};
 
 }

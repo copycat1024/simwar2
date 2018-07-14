@@ -10,6 +10,7 @@ extern "C" {
 
 #include "role.h"
 #include "errors.h"
+#include "api.h"
 
 using std::cout;
 using std::endl;
@@ -18,12 +19,19 @@ using std::string;
 namespace simwar {
 
 	Role::Role(){
+//		cout << "Role " << _name << " contruct." << endl;
 		_init = false;
 		_L = 0;
 	}
 
+	Role::Role(Role&&){
+//		cout << "Role " << _name << " move." << endl;
+		if (_L) throw std::exception();
+	}
+
 	Role::~Role(){
 		if (_L){
+//			cout << "Role " << _name << " destruct." << endl;
 			lua_close(_L);
 		}
 	}
@@ -41,10 +49,14 @@ namespace simwar {
 		if (lua_pcall(_L, 0, 0, 0)){
 			_L = 0;
 		}
+
+		setProxy(0);
+		api::load(_L);
+
 		if (_L) _init = true;
 	}
 
-	HeroValue Role::get(const char* k) const{
+	HeroValue Role::get(const char* k) const {
 		if (!_init) throw NotInitializeError();
 		string key(k);
 		if (_value.find(key) == _value.end()){
@@ -56,9 +68,19 @@ namespace simwar {
 		return _value[key];
 	}
 
-	const string& Role::name() const{
+	void Role::call(const char* k) const {
+		lua_getglobal(_L, k);
+		if (lua_pcall(_L, 0, 0, 0) != 0) throw std::exception();
+	}
+
+	const string& Role::name() const {
 		if (!_init) throw NotInitializeError();
 		return _name;
+	}
+
+	void Role::setProxy(Proxy* bat) const {
+		Proxy** p = static_cast<Proxy**>(lua_getextraspace(_L));
+		*p = bat;
 	}
 
 }

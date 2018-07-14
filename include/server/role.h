@@ -13,13 +13,18 @@ extern "C" {
 
 namespace simwar{
 
+	class Proxy;
+
 	class Role {
 	public:
 		Role();
+		Role(Role&&);
 		~Role();
 		void init(std::string);
 		const std::string& name() const;
 		HeroValue get(const char*) const;
+		void call(const char*) const;
+		void setProxy(Proxy*) const;
 	private:
 		bool _init;
 		std::string _name;
@@ -27,7 +32,7 @@ namespace simwar{
 		mutable std::unordered_map<std::string, HeroValue> _value;
 
 		// disable copying
-		Role operator=(const Role&);
+		Role& operator=(const Role&) = delete;
 	};
 
 }
