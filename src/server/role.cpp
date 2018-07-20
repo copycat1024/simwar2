@@ -78,9 +78,9 @@ namespace simwar {
 		return _name;
 	}
 
-	void Role::setProxy(Proxy* bat) const {
+	void Role::setProxy(Proxy* prox) const {
 		Proxy** p = static_cast<Proxy**>(lua_getextraspace(_L));
-		*p = bat;
+		*p = prox;
 	}
 
 }

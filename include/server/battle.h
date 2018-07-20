@@ -5,7 +5,7 @@
 #include <array>
 #include "team.h"
 
-namespace simwar{
+namespace simwar {
 
 	namespace BattleResult {
 		static const int NotOver = 0;

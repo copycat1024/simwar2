@@ -16,8 +16,8 @@ namespace simwar {
 		void init(std::string);
 		const std::vector<std::string>& hero_files() const;
 		const std::vector<Role>& hero_roles() const;
-		std::unordered_map<HeroKey, std::unordered_map<HeroValue, std::string>> val_info;
-		std::unordered_map<HeroKey, std::string> key_info;
+		ValueInfoTable val_info;
+		KeyInfoTable key_info;
 	private:
 		bool _init;
 		std::vector<std::string> _hero_files;

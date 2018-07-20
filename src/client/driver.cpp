@@ -94,7 +94,7 @@ namespace simwar {
 		}
 
 		void setColor(int color){
-			printf("\033[3%dm", color);
+			printf("\033[0;3%dm", color);
 		}
 
 		void setBackgroundColor(int color){

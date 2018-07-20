@@ -138,10 +138,12 @@ int main(){
 			} else if (cmd != "exit"){
 				cout << "Accepted command:" << endl;
 				cout << "exit" << endl;
-				cout << "prog (program)" << endl;
-				cout << "dir (director)" << endl;
-				cout << "role (director-role)" << endl;
-				cout << "team (team)" << endl;
+				cout << "prog   (program)" << endl;
+				cout << "dir    (director)" << endl;
+				cout << "role   (director-role)" << endl;
+				cout << "team   (team)" << endl;
+				cout << "proxy  (proxy)" << endl;
+				cout << "server (server)" << endl;
 			}
 		} catch (exception& e){
 			cout << "Error: "<< e.what() << endl;

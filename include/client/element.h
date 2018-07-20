@@ -15,17 +15,6 @@ namespace simwar {
 		Right
 	};
 
-	class Label: public Element {
-		public:
-			Label();
-			void moveTo(int, int);
-			void print();
-			std::string text;
-			Alignment align;
-		private:
-			bool _init;
-	};
-
 }
 
 #endif

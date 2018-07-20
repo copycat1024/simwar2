@@ -5,14 +5,14 @@
 #include <array>
 #include "entity.h"
 
-namespace simwar{
+namespace simwar {
 
-	struct TeamSetup{
+	struct TeamSetup {
 		std::array<int, 5> formation;
 		std::array<int, 5> heroes;		
 	};
 
-	struct Team{
+	struct Team {
 		void init(const std::string&);
 		bool isDead(int) const;
 		bool lost() const;
