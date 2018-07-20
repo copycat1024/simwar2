@@ -57,7 +57,7 @@ namespace simwar {
 				Hero& hero = battle.team[i].heroes[j];
 				if (hero[Key::HID] >= roles.size()) throw std::exception();
 				hero[Key::HP] = roles[hero.at(Key::HID)].get("hp");
-				hero[Key::AD] = roles[hero.at(Key::HID)].get("hp");
+				hero[Key::AD] = roles[hero.at(Key::HID)].get("ad");
 			}
 		}
 	}

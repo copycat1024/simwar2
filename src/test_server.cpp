@@ -104,11 +104,11 @@ void testServer(){
 
 	Server ser;
 	ser.init(hero_path);
-	res = ser.run_battle("ABababa", "ABababa");
+	res = ser.run_battle("BMaaaaa", "ABababa");
 	cout << res << endl;
-	res = ser.run_battle_nl("ABababa", "ABababa");
+	res = ser.run_battle_nl("BMaaaaa", "CDaaaaa");
 	cout << res << endl;
-	res = ser.run_battle("ABababa", "ABababa", "log.lua");
+	res = ser.run_battle("BMaaaaa", "CDaaaaa", "log.lua");
 	cout << res << endl;
 }
 

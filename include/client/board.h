@@ -10,6 +10,7 @@ namespace simwar {
 			Board();
 			void moveTo(int, int);
 			void print();
+			static void drawRect(int, int, int, int);
 
 			int teamWidth()  const;
 			int teamHeight() const;

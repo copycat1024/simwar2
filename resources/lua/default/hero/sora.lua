@@ -1,5 +1,5 @@
-hp = 1
-ad = 3
+hp = 160
+ad = 25
 
 function turn()
 	simpleAttack()

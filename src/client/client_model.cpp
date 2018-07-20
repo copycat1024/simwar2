@@ -15,6 +15,12 @@ using std::endl;
 using std::string;
 
 namespace simwar {
+	AlterDatum::AlterDatum(){
+	}
+
+	AlterDatum::AlterDatum(int team, int id, HeroKey key, HeroValue val)
+	: team(team), id(id), key(key), val(val){
+	}
 
 	void ClientModel::alter(lua_State* L){
 		if (lua_gettop(L) != 4)  throw std::exception();
@@ -29,6 +35,7 @@ namespace simwar {
 		int val  = lua_tonumber(L, 4);
 
 		teams[team][id][key] += val;
+		alter_data.push_back(AlterDatum(team, id, key, val));
 	}
 
 	void ClientModel::set(lua_State* L){
@@ -47,7 +54,20 @@ namespace simwar {
 	}
 
 	void ClientModel::turn(lua_State* L){
+		if (lua_gettop(L) != 2)  throw std::exception();
+		if (!lua_isnumber(L, 1)) throw std::exception();
+		if (!lua_isnumber(L, 2)) throw std::exception();
+
+		int team = lua_tonumber(L, 1);
+		int id   = lua_tonumber(L, 2);
+
 		if (view) view->print(*this);
+		active_team = team;
+		active_id   = id;
+		alter_data.clear();
+
+		if (view) view->print(*this);
+
 	}
 
 	void ClientModel::valInfo(lua_State* L){

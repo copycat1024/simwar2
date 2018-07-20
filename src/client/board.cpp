@@ -5,14 +5,6 @@
 using namespace simwar::driver;
 using std::cout;
 
-void drawRect(int left, int top, int width, int height){
-	for (int x=0; x<width; x++){
-		for (int y=0; y<height; y++){
-			gotoxy(left+x, top+y);
-			cout << ' ';
-		}
-	}
-}
 
 namespace simwar {
 
@@ -75,6 +67,15 @@ namespace simwar {
 		gotoxy(1,1);
 
 		resetColor();
+	}
+
+	void Board::drawRect(int left, int top, int width, int height){
+		for (int x=0; x<width; x++){
+			for (int y=0; y<height; y++){
+				gotoxy(left+x, top+y);
+				cout << ' ';
+			}
+		}
 	}
 
 }

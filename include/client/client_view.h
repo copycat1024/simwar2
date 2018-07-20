@@ -29,8 +29,18 @@ namespace simwar {
 		Board board;
 		HeroKey pos_key, hp_key, hid_key;
 		std::set<std::string> keys;
-		int fix_height;
-		int fix_width;
+
+		// board attributes
+		int fix_height, fix_width;
+		int board_color, slot_color, river_color;
+
+		// hero attributes
+		int active_color, damage_color;
+		int team1_color, team2_color, dead_color;
+
+		// detail attributes
+		int value_width;
+		int detail_color;
 	};
 
 	struct HeroView {

@@ -38,7 +38,7 @@ std::array<int, 5> intToFormation(int r){
 		while (combination(p, i) < r)
 			p++;
 		r -= combination(p-1, i);
-		res[i-1] = p;
+		res[i-1] = p-1;
 	}
 	return res;
 }
