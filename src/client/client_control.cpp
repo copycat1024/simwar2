@@ -12,6 +12,7 @@ extern "C" {
 
 using std::cout;
 using std::endl;
+using std::flush;
 using namespace simwar::driver;
 
 namespace simwar {
@@ -36,10 +37,15 @@ namespace simwar {
 		_call("run");
 
 		_view.print(_model);
+		gotoxy(1,1);
+		cout << flush;
+		waitkey();
+		clrscr();
+		cout << flush;
 	}
 
 	void ClientControl::_load(const char* file_name){
-		if (!_L) lua_close(_L);
+		if (_L) lua_close(_L);
 
 		_L = luaL_newstate();
 
@@ -70,6 +76,7 @@ namespace simwar {
 
 	ClientControl::ClientControl(){
 		_model.view = 0;
+		_L = 0;
 	}
 
 	ClientControl::~ClientControl(){

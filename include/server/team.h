@@ -4,13 +4,9 @@
 #include <string>
 #include <array>
 #include "entity.h"
+#include "combi/model.h"
 
 namespace simwar {
-
-	struct TeamSetup {
-		std::array<int, 5> formation;
-		std::array<int, 5> heroes;		
-	};
 
 	struct Team {
 		void init(const std::string&);

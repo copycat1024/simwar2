@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(simwar)
 
+set(CMAKE_BUILD_TYPE Debug)
+
 # Set up build folder structure
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)

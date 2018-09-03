@@ -14,17 +14,20 @@ using std::exception;
 
 using namespace std::chrono;
 
+namespace adhoc {
+	char base32(int n){
+		if (n<26){
+			return 'A'+n;
+		} else {
+			return '2'+n-26;
+		}
+		throw exception();
+	}
+}
+
 using simwar::Program;
 using simwar::Server;
-
-char base32(int n){
-	if (n<26){
-		return 'A'+n;
-	} else {
-		return '2'+n-26;
-	}
-	throw exception();
-}
+using namespace adhoc;
 
 void make_team(char* t, int n){
 	t[1] = base32(n%32);
