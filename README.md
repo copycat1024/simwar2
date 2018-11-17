@@ -1,8 +1,8 @@
 # simwar2
-Simple set piece battle game
+Simple set piece battle game that allow you to desing your own hero by writing lua files.
 
 ### Requirement:
-Debian linux
+Debian linux with cmake installed.
 
 ### Installation:
 Clone the source code and compile it with cmake.  
