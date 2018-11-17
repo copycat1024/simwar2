@@ -11,8 +11,6 @@ add_library(simwar-client
 	client_model.cpp
 	client_control.cpp
 	client_view.cpp
-
-	client.cpp
 )
 target_link_libraries(simwar-client
 	lua5.3-lib

@@ -1,3 +1,5 @@
+// Contain ClientControl class
+
 #include <iostream>
 #include <exception>
 
@@ -27,6 +29,7 @@ namespace simwar {
 		return 0;
 	}
 
+	// Main client job
 	void ClientControl::run(const char* file_name){
 		_load(file_name);
 
@@ -44,6 +47,7 @@ namespace simwar {
 		cout << flush;
 	}
 
+	// Load
 	void ClientControl::_load(const char* file_name){
 		if (_L) lua_close(_L);
 
